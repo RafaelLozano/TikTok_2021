@@ -1,23 +1,39 @@
 import React, { Component, useState } from 'react'
-import { View, TouchableWithoutFeedback, Text, Image} from 'react-native'
+import { View, TouchableWithoutFeedback, Text, Image, TouchableOpacity} from 'react-native'
 import { Video } from 'expo-av';
 import styles from './styles'
-import { Entypo } from '@expo/vector-icons'; 
+import { Entypo, FontAwesome, AntDesign,Fontisto} from '@expo/vector-icons'; 
 
 
 
-const Post = () => {
+
+const Post = (props) => {
     
+  
     const [paused,setPaused] = useState(false);
+    const [post,setPost] = useState(props.post);
+    const [isLiked,setIsLiked] = useState(false);
 
     const onPlayPausePress = () => {
         setPaused(!paused)
+    }
+
+    const onLikePress = () =>{
+        //Solo se quiere afectar likes, se hace una copia del objeto
+        const likesToAdd = isLiked ? -1 : +1;
+        isLiked ? setIsLiked(false) : setIsLiked(true);
+        
+        setPost({
+            ...post,
+            likes: post.likes + likesToAdd,
+        })
+        
     }
     return (
         <TouchableWithoutFeedback onPress={onPlayPausePress}>
             <View style={styles.mainContainer}>
                 <Video
-                    source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+                    source={{ uri: post.video }}
                     style={styles.video}
                     resizeMode="cover"
                     shouldPlay={paused}
@@ -27,39 +43,47 @@ const Post = () => {
                     <View style={styles.sideBar}>
                         <View style={styles.profilePictureContainer}>
                             <Image
-                                source={{ uri:'https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70'}}
+                                source={{ uri: post.user.profilePicture}}
                                 style={styles.profilePicture}
                             />
                         </View>
                         
-                        <View style={styles.iconContainer}>
-                            <Entypo name="beamed-note" size={24} color="white" />
-                            <Text style={styles.statsLabel}>123</Text>
-                        </View>
+                        <TouchableOpacity style={styles.iconContainer} onPress={onLikePress}>
+                            <AntDesign name="heart" size={32} color={isLiked ? 'red' : 'white'}/>
+                            <Text style={styles.statsLabel}>{post.likes}</Text>
+                        </TouchableOpacity>
                         
                         <View style={styles.iconContainer}>
-                            <Entypo name="beamed-note" size={24} color="white" />
-                            <Text style={styles.statsLabel}>123</Text>
+                            <FontAwesome name="commenting" size={32} color="white" />
+                            <Text style={styles.statsLabel}>{post.comments}</Text>
                         </View>
 
                         <View style={styles.iconContainer}>
-                            <Entypo name="beamed-note" size={24} color="white" />
-                            <Text style={styles.statsLabel}>123</Text>
+                            <Fontisto name="share-a" size={32} color="white" />
+                            <Text style={styles.statsLabel}>{post.shares}</Text>
                         </View>
                     </View>
 
 
                     <View style={styles.bottom}>
-                        <Text style={styles.userName}>Name of creator</Text>
-                        <Text style={styles.description}>description of the video, tikTok app</Text>
+                        <View>
+                            <Text style={styles.userName}>@{post.user.userName}</Text>
+                            <Text style={styles.description}>{post.description}</Text>
 
-                        <View style={{flexDirection:'row',alignItems:'center'}}>
-                            <Entypo name="beamed-note" size={24} color="white" />
-                            <Text style={styles.songName}> song name </Text>
-
+                            <View style={{flexDirection:'row',alignItems:'center'}}>
+                                <Entypo name="beamed-note" size={24} color="white" />
+                                <Text style={styles.songName}> {post.song} </Text>
+                            </View>
                         </View>
+
+                        <Image
+                            source={{ uri: post.songImage}}
+                            style={styles.songPicture}
+                        />
                     </View>
+
                 </View>
+
             </View>
         </TouchableWithoutFeedback>
     )

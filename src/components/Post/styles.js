@@ -19,12 +19,7 @@ const styles = StyleSheet.create({
         fontSize:30,
         color:'white'
     },
-    sideBar:{
-        alignSelf:'flex-end',
-        height:300,
-        justifyContent:'space-around'
-        
-    },
+  
     userName:{
         color:'white',
         fontWeight:'bold',
@@ -47,11 +42,20 @@ const styles = StyleSheet.create({
         backgroundColor:'rgba(255, 255, 255, 0.25)',
         borderRadius:10,
         marginHorizontal:10,
-        padding:10
+        padding:10,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'flex-end'
     },
     //sideBar container
     iconContainer:{
 
+    },
+    sideBar: {
+        alignSelf: 'flex-end',
+        height: 300,
+        justifyContent: 'space-around',
+        marginRight:10
     },
     profilePicture:{
         height:50,
@@ -63,12 +67,19 @@ const styles = StyleSheet.create({
     statsLabel:{
         color:'white',
         fontSize:16,
-        fontWeight:'600'
+        fontWeight:'600',
+        marginTop:10
     },
     iconContainer:{
         alignItems:'center'
+    },
+    songPicture:{
+        height: 50,
+        width: 50,
+        borderRadius: 25,
+        borderColor: 'rgba(125,125,125,.5)',
+        borderWidth: 5
     }
-    
 }
 )
 
