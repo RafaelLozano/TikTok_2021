@@ -72,12 +72,12 @@ const Post = (props) => {
 
                             <View style={{flexDirection:'row',alignItems:'center'}}>
                                 <Entypo name="beamed-note" size={24} color="white" />
-                                <Text style={styles.songName}> {post.song} </Text>
+                                <Text style={styles.songName}> {post.song.songName} </Text>
                             </View>
                         </View>
 
                         <Image
-                            source={{ uri: post.songImage}}
+                            source={{ uri: post.song.image}}
                             style={styles.songPicture}
                         />
                     </View>
