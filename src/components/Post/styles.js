@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
         padding:10,
         flexDirection:'row',
         justifyContent:'space-between',
-        alignItems:'flex-end'
+        alignItems:'flex-end',
+        
     },
     //sideBar container
     iconContainer:{

@@ -16,15 +16,15 @@ export default [
     },
     {
         id: '1',
-        video: '',
+        video: 'https://media.istockphoto.com/videos/recommended-hand-wash-video-id1222595811',
         user: {
             id: 'u0',
-            userName: 'ValeriaE',
-            profilePicture: ' '
+            userName: 'Elena22',
+            profilePicture: 'https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg'
         },
         description: 'Este video esta bien perron',
         song: 'Yeah - bruno mars',
-        songImage: '',
+        songImage: 'https://upload.wikimedia.org/wikipedia/en/2/2b/Bruno_Mars_-_24K_Magic_%28Official_Album_Cover%29.png',
         likes: 101,
         comments: 19,
         shares: 49,
